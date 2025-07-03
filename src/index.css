@@ -1,42 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Mentora Health Campaign Design System - Therapeutic & Calming Colors */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core Background Colors */
+    --background: 240 20% 99%;
+    --foreground: 215 25% 27%;
 
+    /* Card & Surface Colors */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 215 25% 27%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 25% 27%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Calming Teal/Blue */
+    --primary: 180 65% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-soft: 180 45% 85%;
+    --primary-glow: 180 75% 70%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Soft Sage Green */
+    --secondary: 140 35% 75%;
+    --secondary-foreground: 140 45% 25%;
+    --secondary-soft: 140 25% 90%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Accent - Warm Lavender */
+    --accent: 260 35% 75%;
+    --accent-foreground: 260 45% 25%;
+    --accent-soft: 260 25% 90%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Therapeutic Colors */
+    --therapeutic-blue: 200 70% 60%;
+    --therapeutic-green: 150 50% 65%;
+    --therapeutic-purple: 270 45% 70%;
+    --therapeutic-orange: 35 80% 70%;
+    --therapeutic-pink: 340 60% 75%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Mood Colors */
+    --mood-excellent: 140 60% 55%;
+    --mood-good: 100 50% 60%;
+    --mood-okay: 45 70% 65%;
+    --mood-poor: 25 85% 65%;
+    --mood-terrible: 0 75% 60%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Muted Colors */
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
 
-    --radius: 0.5rem;
+    /* Utility Colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 140 70% 45%;
+    --warning: 35 85% 55%;
+
+    /* Borders & Inputs */
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 180 65% 55%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--accent)));
+    --gradient-therapeutic: linear-gradient(135deg, hsl(var(--therapeutic-blue)), hsl(var(--therapeutic-purple)));
+    --gradient-calm: linear-gradient(180deg, hsl(var(--background)), hsl(var(--primary-soft)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--therapeutic-purple)) 50%, hsl(var(--accent)) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(var(--primary) / 0.1);
+    --shadow-medium: 0 8px 30px -6px hsl(var(--primary) / 0.15);
+    --shadow-strong: 0 20px 40px -8px hsl(var(--primary) / 0.2);
+    --shadow-glow: 0 0 30px hsl(var(--primary-glow) / 0.3);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +145,82 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
+  }
+}
+
+@layer components {
+  /* Breathing Animation */
+  .breathe {
+    animation: breathe 4s ease-in-out infinite;
+  }
+  
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.1); opacity: 1; }
+  }
+
+  /* Mood Card Hover Effects */
+  .mood-card {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-lg;
+  }
+
+  /* Floating Animation */
+  .float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Pulse Animation for Notifications */
+  .pulse-gentle {
+    animation: pulse-gentle 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-gentle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Therapeutic Button Variants */
+  .btn-therapeutic {
+    @apply bg-gradient-to-r from-therapeutic-blue to-therapeutic-purple text-white font-medium px-6 py-3 rounded-xl shadow-medium hover:shadow-strong transition-all duration-300 hover:scale-105;
+  }
+
+  .btn-calm {
+    @apply bg-gradient-to-r from-secondary to-accent text-secondary-foreground font-medium px-6 py-3 rounded-xl shadow-soft hover:shadow-medium transition-all duration-300;
+  }
+
+  /* Card Variants */
+  .card-therapeutic {
+    @apply bg-card border border-border rounded-2xl p-6 shadow-soft hover:shadow-medium transition-all duration-300;
+  }
+
+  .card-mood {
+    @apply bg-gradient-to-br from-card to-primary-soft border border-border rounded-2xl p-6 shadow-soft hover:shadow-medium transition-all duration-300 cursor-pointer;
+  }
+
+  /* Text Variants */
+  .text-therapeutic {
+    @apply text-therapeutic-blue font-medium;
+  }
+
+  .text-heading {
+    @apply font-poppins font-semibold text-foreground;
+  }
+
+  .text-body {
+    @apply font-inter text-muted-foreground leading-relaxed;
   }
 }
