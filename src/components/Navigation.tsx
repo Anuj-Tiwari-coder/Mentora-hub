@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { UserButton } from "@clerk/clerk-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Heart, MessageCircle, Timer, Calendar, User, Bell } from "lucide-react";
+import { Menu, Heart, MessageCircle, Timer, Calendar, Bell } from "lucide-react";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -71,13 +72,13 @@ const Navigation = () => {
               <Bell className="h-5 w-5" />
               <span className="absolute -top-1 -right-1 h-3 w-3 bg-therapeutic-orange rounded-full pulse-gentle"></span>
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="hover:bg-primary-soft rounded-xl"
-            >
-              <User className="h-5 w-5" />
-            </Button>
+            <UserButton 
+              appearance={{
+                elements: {
+                  avatarBox: "w-10 h-10"
+                }
+              }}
+            />
           </div>
 
           {/* Mobile Menu */}
