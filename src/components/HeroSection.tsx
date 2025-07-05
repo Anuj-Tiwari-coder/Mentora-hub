@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Heart, MessageCircle, Timer, Calendar } from "lucide-react";
 import heroImage from "@/assets/hero-wellness.jpg";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   const features = [
@@ -138,9 +139,10 @@ const HeroSection = () => {
             <Button 
               size="lg" 
               className="btn-therapeutic text-lg px-12 py-4 h-auto"
-            >
-              Check Your Mood Now
-            </Button>
+            > <Link to="/mood">
+                  Check Your Mood Now
+               </Link>
+           </Button>
           </div>
         </div>
       </div>
